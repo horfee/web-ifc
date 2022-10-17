@@ -428,6 +428,13 @@ export class IfcAPI
        this.ifcGuidMap.set(modelID, map);
     }
 
+    GetExpressIdForIfcGuid(modelID: number, ifcGuid: string): number {
+        if ( this.ifcGuidMap.get(modelID) === undefined ) {
+            this.CreateIfcGuidToExpressIdMapping(modelID);
+        }
+        return this.ifcGuidMap.get(modelID).get(ifcGuid);
+    }
+    
     SetWasmPath(path: string, absolute = false){
         this.wasmPath = path;
         this.isWasmPathAbsolute = absolute;
